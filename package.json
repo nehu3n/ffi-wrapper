@@ -1,0 +1,17 @@
+{
+  "name": "ffi-wrapper",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "☎ A lightweight, optimized and simple FFI wrapper for NodeJS, Deno and Bun.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": ["nodejs", "lightweight", "cross-platform", "deno", "bun", "ffi", "ffi-wrapper"],
+  "author": "Nehuén <github.com/nehu3n>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
