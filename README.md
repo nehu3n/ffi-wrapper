@@ -5,13 +5,13 @@
 This library provides a **lightweight**, **optimized** and **simple** way to invoke FFI calls to libs in **NodeJS**, **Deno** and **Bun**. It abstracts the FFI API from each runtime into a single unified one.
 
 ```ts
-import { open, getLib, Types } from "ffi-wrapper";
+import { open, suffix, Types } from "ffi-wrapper";
 
 // Automatically complete the suffix depending on the operating system (.dll, .so, .dylib)
-let lib = getLib("lib");
+const lib = `lib.${suffix}`
 
 const ffi = open(lib, {
-    "add": [Types.Int, Types.Int],
+    "add": [Types.Int32, Types.Int32],
 });
 
 console.log(ffi.add(1, 2)); // Output: 3
