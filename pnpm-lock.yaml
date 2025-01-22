@@ -1,0 +1,161 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      ffi-rs:
+        specifier: ^1.2.3
+        version: 1.2.3
+    devDependencies:
+      '@types/bun':
+        specifier: latest
+        version: 1.2.0
+
+packages:
+
+  '@types/bun@1.2.0':
+    resolution: {integrity: sha512-5N1JqdahfpBlAv4wy6svEYcd/YfO2GNrbL95JOmFx8nkE6dbK4R0oSE5SpBA4vBRqgrOUAXF8Dpiz+gi7r80SA==}
+
+  '@types/node@22.10.7':
+    resolution: {integrity: sha512-V09KvXxFiutGp6B7XkpaDXlNadZxrzajcY50EuoLIpQ6WWYCSvf19lVIazzfIzQvhUN2HjX12spLojTnhuKlGg==}
+
+  '@types/ws@8.5.13':
+    resolution: {integrity: sha512-osM/gWBTPKgHV8XkTunnegTRIsvF6owmf5w+JtAfOw472dptdm0dlGv4xCt6GwQRcC2XVOvvRE/0bAoQcL2QkA==}
+
+  '@yuuang/ffi-rs-darwin-arm64@1.2.3':
+    resolution: {integrity: sha512-sIywvVutzUSDEl9YWQlPSSTZ53yXcjeHSu3dDSqkXBSjNMVHhsLN8aZyJ5wFGp7M415xkv+qhvDWrYV1zd4DPw==}
+    engines: {node: '>= 12'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@yuuang/ffi-rs-darwin-x64@1.2.3':
+    resolution: {integrity: sha512-Vr2DTURT0LnNHz4pQNmMucvmVRRheDn5z/yfkr3jdbxjDaO1TaAZLEyHCJpXPtavCrts3FD7byGusmqsOl1v0g==}
+    engines: {node: '>= 12'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@yuuang/ffi-rs-linux-arm-gnueabihf@1.2.3':
+    resolution: {integrity: sha512-Y46a6XFmtzp0Yj54EVOhHNyzcF8CVxtymJyFx8ZMAnukpqGZMaas5xhuIRlDX8SEmSUFReGYN1i0pm6Z7Nq+Ww==}
+    engines: {node: '>= 12'}
+    cpu: [arm]
+    os: [linux]
+
+  '@yuuang/ffi-rs-linux-arm64-gnu@1.2.3':
+    resolution: {integrity: sha512-yXltLd9YRRam7MblYZfYUZTU2NxRpib6jTebXbcX6ijy/TYplSwukR1jYrPx7wLddz9s9sH3Ux8Y+SRIqn3VBQ==}
+    engines: {node: '>= 12'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@yuuang/ffi-rs-linux-arm64-musl@1.2.3':
+    resolution: {integrity: sha512-x2FkFxtWMvC6aYNzEzc1o7QOLceLc3XGy26cYhPGkKv4wEi+nwgUbRssvWtT0QNDxu+0JN1PcafFrynWgaWRCg==}
+    engines: {node: '>= 12'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@yuuang/ffi-rs-linux-x64-gnu@1.2.3':
+    resolution: {integrity: sha512-0DqLWmGTMUKjMheSRrzZpF1sWtm394zU0ynjMgyah65cx6+UeNSW/4aphP2rLb4ssJzn6kd7lU6Du+IpW+nsnQ==}
+    engines: {node: '>= 12'}
+    cpu: [x64]
+    os: [linux]
+
+  '@yuuang/ffi-rs-linux-x64-musl@1.2.3':
+    resolution: {integrity: sha512-eQNP/6jlcmk+UqSlgC2URWHp7xvCTXkPtVQlV6w6Fown6+8EC99OTQhwhnZZGANXrTBDxpQhmkTF+jFzE/NCbg==}
+    engines: {node: '>= 12'}
+    cpu: [x64]
+    os: [linux]
+
+  '@yuuang/ffi-rs-win32-arm64-msvc@1.2.3':
+    resolution: {integrity: sha512-b2n0dfG5LyUPK5OixoBxgohIpeMQ8sfdv4Ge9FNTPiGBKTZ8IUIWCe3jrZM8Ks7V6XRC6MHIDva0sCQfLbSihQ==}
+    engines: {node: '>= 12'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@yuuang/ffi-rs-win32-ia32-msvc@1.2.3':
+    resolution: {integrity: sha512-Mu5IFnXQs+r9DxtF18uuu5OYBzYlL7q1u0jI0Jwyq6ZMTVSzhZBFQtXH+CTouqoXThQk6nVwShQJ401ET2VblQ==}
+    engines: {node: '>= 12'}
+    cpu: [x64, ia32]
+    os: [win32]
+
+  '@yuuang/ffi-rs-win32-x64-msvc@1.2.3':
+    resolution: {integrity: sha512-9H+/vqdEaVCaRE13nvqJ0kf30TNUcXk3b9yVwW2yEunYfzg5CK+amYbD7bPJD+DuzEwqqApo7g69UVLKv+zB8g==}
+    engines: {node: '>= 12'}
+    cpu: [x64]
+    os: [win32]
+
+  bun-types@1.2.0:
+    resolution: {integrity: sha512-KEaJxyZfbV/c4eyG0vyehDpYmBGreNiQbZIqvVHJwZ4BmeuWlNZ7EAzMN2Zcd7ailmS/tGVW0BgYbGf+lGEpWw==}
+
+  ffi-rs@1.2.3:
+    resolution: {integrity: sha512-9xheuV0BGGTIw5jp87fxdg6BA+9XsH5pNmhB8m8QZjmS9PZNBTHIZ8U8trVorus2THhX9ezL1SYmeoMJx7+Gig==}
+
+  undici-types@6.20.0:
+    resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
+
+snapshots:
+
+  '@types/bun@1.2.0':
+    dependencies:
+      bun-types: 1.2.0
+
+  '@types/node@22.10.7':
+    dependencies:
+      undici-types: 6.20.0
+
+  '@types/ws@8.5.13':
+    dependencies:
+      '@types/node': 22.10.7
+
+  '@yuuang/ffi-rs-darwin-arm64@1.2.3':
+    optional: true
+
+  '@yuuang/ffi-rs-darwin-x64@1.2.3':
+    optional: true
+
+  '@yuuang/ffi-rs-linux-arm-gnueabihf@1.2.3':
+    optional: true
+
+  '@yuuang/ffi-rs-linux-arm64-gnu@1.2.3':
+    optional: true
+
+  '@yuuang/ffi-rs-linux-arm64-musl@1.2.3':
+    optional: true
+
+  '@yuuang/ffi-rs-linux-x64-gnu@1.2.3':
+    optional: true
+
+  '@yuuang/ffi-rs-linux-x64-musl@1.2.3':
+    optional: true
+
+  '@yuuang/ffi-rs-win32-arm64-msvc@1.2.3':
+    optional: true
+
+  '@yuuang/ffi-rs-win32-ia32-msvc@1.2.3':
+    optional: true
+
+  '@yuuang/ffi-rs-win32-x64-msvc@1.2.3':
+    optional: true
+
+  bun-types@1.2.0:
+    dependencies:
+      '@types/node': 22.10.7
+      '@types/ws': 8.5.13
+
+  ffi-rs@1.2.3:
+    optionalDependencies:
+      '@yuuang/ffi-rs-darwin-arm64': 1.2.3
+      '@yuuang/ffi-rs-darwin-x64': 1.2.3
+      '@yuuang/ffi-rs-linux-arm-gnueabihf': 1.2.3
+      '@yuuang/ffi-rs-linux-arm64-gnu': 1.2.3
+      '@yuuang/ffi-rs-linux-arm64-musl': 1.2.3
+      '@yuuang/ffi-rs-linux-x64-gnu': 1.2.3
+      '@yuuang/ffi-rs-linux-x64-musl': 1.2.3
+      '@yuuang/ffi-rs-win32-arm64-msvc': 1.2.3
+      '@yuuang/ffi-rs-win32-ia32-msvc': 1.2.3
+      '@yuuang/ffi-rs-win32-x64-msvc': 1.2.3
+
+  undici-types@6.20.0: {}
