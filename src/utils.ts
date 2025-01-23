@@ -3,24 +3,25 @@ declare global {
   var Deno: any;
 }
 
-function detectRuntime(): "deno" | "bun" | "node" {
+export function detectRuntime(): "deno" | "bun" | "node" {
   if (globalThis.Deno) {
     return "deno";
-  } else if (globalThis.Bun) {
-    return "bun";
-  } else {
-    return "node";
   }
+  if (globalThis.Bun) {
+    return "bun";
+  }
+
+  return "node";
 }
 
 function getOS(): string {
   const runtime = detectRuntime();
 
-  if (runtime == "node" || runtime == "bun") {
+  if (runtime === "node" || runtime === "bun") {
     return process.platform;
-  } else {
-    return Deno.build.os;
   }
+
+  return Deno.build.os;
 }
 
 export function getSuffix(): "dll" | "dylib" | "so" {
