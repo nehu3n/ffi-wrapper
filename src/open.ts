@@ -79,8 +79,42 @@ function mapType(wrapperType: Type): string | any {
   }
 }
 
-export function open(libPath: string, symbols: Symbols) {
-  for (const key in symbols) {
-    console.log(symbols[key].params.map((t) => mapType(t)));
+
+export async function open(libPath: string, symbols: Symbols) {
+  const runtime = detectRuntime();
+
+  switch (runtime) {
+    case "deno": {
+      const denoSymbols = Object.fromEntries(
+        Object.entries(symbols).map(([key, { params, returns }]) => [
+          key,
+          {
+            parameters: params.map(mapType),
+            result: mapType(returns),
+          },
+        ])
+      );
+      return Deno.dlopen(libPath, denoSymbols);
+    }
+    case "bun": {
+      const { dlopen } = await import("bun:ffi");
+
+      const bunSymbols = Object.fromEntries(
+        Object.entries(symbols).map(([key, { params, returns }]) => [
+          key,
+          {
+            args: params.map(mapType),
+            returns: mapType(returns),
+          },
+        ])
+      );
+      return dlopen(libPath, bunSymbols);
+    }
+    case "node": {
+      console.info("todo: node");
+      break
+    }
+    default:
+      throw new Error(`Unsupported runtime: ${runtime}`);
   }
 }
