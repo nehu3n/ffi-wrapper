@@ -1,4 +1,4 @@
-const Types = {
+export const Types = {
   // Integer numbers
   Int8: 0,
   Int16: 1,
@@ -22,7 +22,7 @@ const Types = {
 } as const;
 
 type TypeValue<T> = T[keyof T];
-type Type = TypeValue<typeof Types>;
+export type Type = TypeValue<typeof Types>;
 
 export type Symbols = {
   [key: string]: {
