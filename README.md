@@ -1,4 +1,4 @@
-<img src="./public/logo.png" width="170px" align="right" />
+<img src="./.github/logo.png" width="170px" align="right" />
 
 # FFI Wrapper
 
