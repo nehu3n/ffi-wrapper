@@ -1,5 +1,4 @@
 import type { Symbols, Type } from "./types.d.ts";
-import { FFIType } from "bun:ffi";
 import { DataType } from "ffi-rs";
 import { detectRuntime } from "./utils.ts";
 
@@ -21,24 +20,29 @@ const DenoTypes: { [key: number]: string } = {
   15: "buffer"
 } as const;
 
-const BunTypes: { [key: number]: FFIType } = {
-  0: FFIType.i8,
-  1: FFIType.i16,
-  2: FFIType.i32,
-  3: FFIType.i64,
-  4: FFIType.u8,
-  5: FFIType.u16,
-  6: FFIType.u32,
-  7: FFIType.u64,
-  8: FFIType.f32,
-  9: FFIType.f64,
-  10: FFIType.bool,
-  11: FFIType.char,
-  12: FFIType.cstring,
-  13: FFIType.function,
-  14: FFIType.ptr,
-  15: FFIType.buffer
-} as const;
+let BunTypes: { [key: number]: any } | null = null;
+
+if (detectRuntime() === "bun") {
+  const { FFIType } = await import("bun:ffi");
+  BunTypes = {
+    0: FFIType.i8,
+    1: FFIType.i16,
+    2: FFIType.i32,
+    3: FFIType.i64,
+    4: FFIType.u8,
+    5: FFIType.u16,
+    6: FFIType.u32,
+    7: FFIType.u64,
+    8: FFIType.f32,
+    9: FFIType.f64,
+    10: FFIType.bool,
+    11: FFIType.char,
+    12: FFIType.cstring,
+    13: FFIType.function,
+    14: FFIType.ptr,
+    15: FFIType.buffer
+  } as const;
+}
 
 const NodeTypes: { [key: number]: DataType } = {
   0: DataType.I16,
@@ -59,16 +63,19 @@ const NodeTypes: { [key: number]: DataType } = {
   15: DataType.U8Array
 } as const;
 
-function mapType(wrapperType: Type): string | FFIType | DataType {
+function mapType(wrapperType: Type): string | any {
   const runtime = detectRuntime();
 
   switch (runtime) {
     case "deno":
-      return DenoTypes[wrapperType]
+      return DenoTypes[wrapperType];
     case "bun":
-      return BunTypes[wrapperType]
+      if (!BunTypes) throw new Error("BunTypes not initialized");
+      return BunTypes[wrapperType];
     case "node":
-      return NodeTypes[wrapperType]
+      return NodeTypes[wrapperType];
+    default:
+      throw new Error(`Unsupported runtime: ${runtime}`);
   }
 }
 
