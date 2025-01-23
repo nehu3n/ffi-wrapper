@@ -1,8 +1,9 @@
 import type { Symbols, Type } from "./types.d.ts";
 import { FFIType } from "bun:ffi";
 import { DataType } from "ffi-rs";
+import { detectRuntime } from "./utils.ts";
 
-const DenoTypes = {
+const DenoTypes: { [key: number]: string } = {
   0: "i8",
   1: "i16",
   2: "i32",
@@ -20,7 +21,7 @@ const DenoTypes = {
   15: "buffer"
 } as const;
 
-const BunTypes = {
+const BunTypes: { [key: number]: FFIType } = {
   0: FFIType.i8,
   1: FFIType.i16,
   2: FFIType.i32,
@@ -39,7 +40,7 @@ const BunTypes = {
   15: FFIType.buffer
 } as const;
 
-const NodeTypes = {
+const NodeTypes: { [key: number]: DataType } = {
   0: DataType.I16,
   1: DataType.I16,
   2: DataType.I32,
@@ -58,4 +59,21 @@ const NodeTypes = {
   15: DataType.U8Array
 } as const;
 
-function open(libPath: string, symbols: Symbols) { }
+function mapType(wrapperType: Type): string | FFIType | DataType {
+  const runtime = detectRuntime();
+
+  switch (runtime) {
+    case "deno":
+      return DenoTypes[wrapperType]
+    case "bun":
+      return BunTypes[wrapperType]
+    case "node":
+      return NodeTypes[wrapperType]
+  }
+}
+
+export function open(libPath: string, symbols: Symbols) {
+  for (const key in symbols) {
+    console.log(symbols[key].params.map((t) => mapType(t)));
+  }
+}
