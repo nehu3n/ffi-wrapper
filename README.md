@@ -11,10 +11,13 @@ import { open, suffix, Types } from "ffi-wrapper";
 const lib = `lib.${suffix}`
 
 const ffi = open(lib, {
-    "add": [Types.Int32, Types.Int32],
+  "add": {
+    params: [Types.Int32, Types.Int32],
+    returns: Types.Int32
+  }
 });
 
-console.log(ffi.add(1, 2)); // Output: 3
+console.log(ffi.symbols.add(1, 2)); // Output: 3
 ```
 
 ## 🚀 Installation
