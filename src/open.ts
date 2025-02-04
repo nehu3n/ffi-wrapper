@@ -1,5 +1,5 @@
 import type { Symbols, Type } from "./types.d.ts";
-import { DataType } from "ffi-rs";
+import { DataType, open as nodeOpen, define, close as nodeClose } from "ffi-rs";
 import { detectRuntime } from "./utils.ts";
 
 const DenoTypes: { [key: number]: string } = {
@@ -94,7 +94,12 @@ export async function open(libPath: string, symbols: Symbols) {
           },
         ])
       );
-      return Deno.dlopen(libPath, denoSymbols);
+      const lib = Deno.dlopen(libPath, denoSymbols);
+
+      return {
+        symbols: lib.symbols,
+        close: lib.close,
+      }
     }
     case "bun": {
       const { dlopen } = await import("bun:ffi");
@@ -108,11 +113,42 @@ export async function open(libPath: string, symbols: Symbols) {
           },
         ])
       );
-      return dlopen(libPath, bunSymbols);
+
+      const lib = dlopen(libPath, bunSymbols);
+
+      return {
+        symbols: lib.symbols,
+        close: lib.close,
+      };
     }
     case "node": {
-      console.info("todo: node");
-      break
+      nodeOpen({
+        library: libPath,
+        path: libPath,
+      });
+
+      const nodeSymbols = Object.fromEntries(
+        Object.entries(symbols).map(([key, { params, returns }]) => [
+          key,
+          {
+            library: libPath,
+            retType: mapType(returns),
+            paramsType: params.map(mapType),
+          },
+        ])
+      );
+
+      const wrappedSymbols = Object.fromEntries(
+        Object.entries(define(nodeSymbols)).map(([key, fn]) => [
+          key,
+          (...args: any[]) => fn(args),
+        ])
+      );
+
+      return {
+        symbols: wrappedSymbols,
+        close: () => nodeClose(libPath),
+      };
     }
     default:
       throw new Error(`Unsupported runtime: ${runtime}`);
