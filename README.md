@@ -1,4 +1,4 @@
-<img src="./.github/logo.png" width="170px" align="right" />
+<img src="https://github.com/nehu3n/ffi-wrapper/blob/128296f9bf7a52f01ae60a14715a1d290228934c/.github/logo.png" width="170px" align="right" />
 
 # FFI Wrapper
 
@@ -8,13 +8,13 @@ This library provides a **lightweight**, **optimized** and **simple** way to inv
 import { open, suffix, Types } from "ffi-wrapper";
 
 // Automatically complete the suffix depending on the operating system (.dll, .so, .dylib)
-const lib = `lib.${suffix}`
+const lib = `lib.${suffix}`;
 
 const ffi = open(lib, {
-  "add": {
+  add: {
     params: [Types.Int32, Types.Int32],
-    returns: Types.Int32
-  }
+    returns: Types.Int32,
+  },
 });
 
 console.log(ffi.symbols.add(1, 2)); // Output: 3
