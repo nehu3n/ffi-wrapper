@@ -1,8 +1,5 @@
 <img src="https://github.com/nehu3n/ffi-wrapper/blob/128296f9bf7a52f01ae60a14715a1d290228934c/.github/logo.png" width="170px" align="right" />
 
-> [!NOTE]
-> The package already allows calling libraries, but it lacks callbacks and pointers.
-
 # FFI Wrapper
 
 This library provides a **lightweight**, **optimized** and **simple** way to invoke FFI calls to libs in **NodeJS**, **Deno** and **Bun**. It abstracts the FFI API from each runtime into a single unified one.
