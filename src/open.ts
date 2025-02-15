@@ -17,7 +17,7 @@ const DenoTypes: { [key: number]: string } = {
   12: "buffer",
   13: "function",
   14: "pointer",
-  15: "buffer"
+  15: "buffer",
 } as const;
 
 let BunTypes: { [key: number]: any } | null = null;
@@ -40,7 +40,7 @@ if (detectRuntime() === "bun") {
     12: FFIType.cstring,
     13: FFIType.function,
     14: FFIType.ptr,
-    15: FFIType.buffer
+    15: FFIType.buffer,
   } as const;
 }
 
@@ -60,10 +60,10 @@ const NodeTypes: { [key: number]: DataType } = {
   12: DataType.String,
   13: DataType.Function,
   14: DataType.External,
-  15: DataType.U8Array
+  15: DataType.U8Array,
 } as const;
 
-function mapType(wrapperType: Type): string | any {
+export function mapType(wrapperType: Type): string | any {
   const runtime = detectRuntime();
 
   switch (runtime) {
@@ -79,7 +79,6 @@ function mapType(wrapperType: Type): string | any {
   }
 }
 
-
 export async function open(libPath: string, symbols: Symbols) {
   const runtime = detectRuntime();
 
@@ -92,14 +91,14 @@ export async function open(libPath: string, symbols: Symbols) {
             parameters: params.map(mapType),
             result: mapType(returns),
           },
-        ])
+        ]),
       );
       const lib = Deno.dlopen(libPath, denoSymbols);
 
       return {
         symbols: lib.symbols,
         close: lib.close,
-      }
+      };
     }
     case "bun": {
       const { dlopen } = await import("bun:ffi");
@@ -111,7 +110,7 @@ export async function open(libPath: string, symbols: Symbols) {
             args: params.map(mapType),
             returns: mapType(returns),
           },
-        ])
+        ]),
       );
 
       const lib = dlopen(libPath, bunSymbols);
@@ -135,14 +134,14 @@ export async function open(libPath: string, symbols: Symbols) {
             retType: mapType(returns),
             paramsType: params.map(mapType),
           },
-        ])
+        ]),
       );
 
       const wrappedSymbols = Object.fromEntries(
         Object.entries(define(nodeSymbols)).map(([key, fn]) => [
           key,
           (...args: any[]) => fn(args),
-        ])
+        ]),
       );
 
       return {
