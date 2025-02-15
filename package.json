@@ -7,6 +7,9 @@
   "scripts": {
     "build": "swc ./src -d ./dist"
   },
+  "repository": {
+    "url": "https://github.com/nehu3n/ffi-wrapper"
+  },
   "keywords": [
     "nodejs",
     "lightweight",
